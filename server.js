@@ -1,11 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+require('dotenv').config();
+
+
+
 const app = express()
 const port = 3000
 const cors = require('cors')
 
-const ConnectionString= 'mongodb+srv://admin:sTyUeXk5g5tUG0l0@akshay.ws3kz.mongodb.net/?retryWrites=true&w=majority&appName=Akshay'
 
 const productRoutes = require('./routes/productRoutes')
 
@@ -24,7 +27,7 @@ app.use('/api/products', productRoutes)
 
 //es6 => promise aceepted rejected
 
-mongoose.connect(ConnectionString)
+mongoose.connect(process.env.CONNECTION_STRING)
 .then(() => console.log("Mongo db is connected succesfully"))
 //.catch(() => console.log("There is problem in connected with database"))
 .catch( err => console.log(err))
